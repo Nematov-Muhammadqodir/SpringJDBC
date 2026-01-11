@@ -1,12 +1,10 @@
 package com.kevin.springbootjdbcex.repo;
 
-import java.util.ArrayList;
+import java.sql.ResultSet;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.kevin.springbootjdbcex.model.Student;
 
 @Repository
@@ -34,8 +32,16 @@ public class StudentRepo {
 
     public List<Student> findAll() {
 
-        List<Student> students = new ArrayList<>();
-        return students;
+        String sql = "select * from student";
+
+        return jdbc.query(sql, (ResultSet rs, int rowNum) -> {
+            Student s = new Student();
+            s.setRollNum(rs.getInt("rollNum"));
+            s.setName(rs.getString("name"));
+            s.setMarks(rs.getInt("marks"));
+
+            return s;
+        });
     }
 
 }

@@ -16,9 +16,9 @@ public class SpringbootjdbcexApplication {
 		StudentService studentService = context.getBean(StudentService.class);
 
 		Student student1 = context.getBean(Student.class);
-		student1.setMarks(78);
-		student1.setName("Kevin");
-		student1.setRollNum(1);
+		student1.setMarks(58);
+		student1.setName("Ortigaliyev");
+		student1.setRollNum(104);
 
 		studentService.create(student1);
 		System.out.println(studentService.getAllStudents());
